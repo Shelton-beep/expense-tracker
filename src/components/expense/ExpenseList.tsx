@@ -11,15 +11,18 @@ interface Props {
 }
 
 export const ExpenseList = ({ expenses, onDelete }: Props) => {
+  if (expenses.length === 0) return null;
   return (
     <>
       <table className="table table-bordered">
-        <tr>
-          <th>Description</th>
-          <th>Amount</th>
-          <th>Category</th>
-          <th></th>
-        </tr>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>
           {expenses.map((expense) => (
             <tr key={expense.id}>
