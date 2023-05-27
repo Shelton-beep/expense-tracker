@@ -10,8 +10,8 @@ const schema = z.object({
     .max(50, { message: "Description cannot be more than 50 characters" }),
   amount: z
     .number({ invalid_type_error: "Amount is required." })
-    .min(0.01)
-    .max(100_000),
+    .min(1, { message: "Amount should begin from 1 USD" })
+    .max(100_000, { message: "Amount cannot be greater than 100 000 USD" }),
   category: z.enum(categories, {
     errorMap: () => ({ message: "Category is required." }),
   }),

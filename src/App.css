@@ -2,3 +2,11 @@ body{
     padding: 20px;
     margin: 10px;
 }
+h1{
+    color: red;
+    text-align: center;
+    border-bottom: 2px;
+}
+h3{
+    text-align: right;
+}
