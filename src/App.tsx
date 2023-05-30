@@ -16,23 +16,23 @@ function App() {
     ? expenses.filter((e) => e.category === selectedCategory)
     : expenses;
 
+  const noun = visibleExpenses.length === 1 ? "expense" : "expenses";
+
   return (
     <>
       <div className="mb-3">
         <h1>Welcome To Expense Tracker</h1>
         <hr />
       </div>
-      <div className="mb-5">
+      <div className="mb-5 d-flex gap-3">
         <AddExpenseButton
           buttonName={showForm ? "Hide Form" : "Add New Expense"}
           buttonColor={showForm ? "danger" : "success"}
           handleClick={() => setShowForm(!showForm)}
         />
-        {visibleExpenses.length === 1 ? (
-          <h3>1 expense to track.</h3>
-        ) : (
-          <h3>{visibleExpenses.length} expenses to track.</h3>
-        )}
+        <h3>
+          {visibleExpenses.length} {noun} to track.
+        </h3>
       </div>
       <div className="mb-5">
         {showForm && (
