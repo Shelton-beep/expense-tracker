@@ -30,7 +30,7 @@ function App() {
           buttonColor={showForm ? "danger" : "success"}
           handleClick={() => setShowForm(!showForm)}
         />
-        <h3 className="fs-4">
+        <h3 className="fs-4 text-nowrap">
           {visibleExpenses.length} {noun} to track.
         </h3>
       </div>
