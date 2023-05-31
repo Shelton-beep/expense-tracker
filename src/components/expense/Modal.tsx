@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import { ExpenseForm } from "./ExpenseForm";
 
 interface Props {
-  handleSubmit: () => void;
+  handleSubmit: (expense: any) => void;
 }
 
 function ModalDialog({ handleSubmit }: Props) {
