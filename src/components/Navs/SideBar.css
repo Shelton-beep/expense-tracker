@@ -1,0 +1,33 @@
+.sideBar{
+    flex: 1.5;
+    height: calc(100vh - 50px);
+    overflow-y: scroll;
+    position: sticky;
+    top: 50px;
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+    scroll-behavior: smooth;
+    visibility: hidden;
+}
+
+::-webkit-scrollbar-track{
+    background-color: rgb(179, 179, 179);
+    visibility: hidden;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: gray;
+}
+
+.sideBarWrapper{
+    padding: 20px;
+}
+
+.sideBarListItem{
+    list-style: none;
+    text-decoration: none;
+    margin: 5px 0;
+    padding: 10px 0;
+}

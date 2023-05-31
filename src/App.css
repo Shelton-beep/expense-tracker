@@ -1,7 +1,4 @@
-body{
-    padding: 20px;
-    margin: 10px;
-}
+
 h1{
     color: red;
     text-align: center;
@@ -9,4 +6,9 @@ h1{
 }
 h3{
     text-align: right;
+}
+
+.centerContent{
+    margin: 10px 5px;
+    flex: 7;
 }
