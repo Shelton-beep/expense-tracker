@@ -22,7 +22,7 @@
 }
 
 .sideBarWrapper{
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .sideBarListItem{
@@ -30,4 +30,12 @@
     text-decoration: none;
     margin: 5px 0;
     padding: 10px 0;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.sideBarIcon{
+    margin-right: 3px;
+    padding-right: 5px;
 }
