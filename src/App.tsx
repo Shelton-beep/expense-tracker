@@ -3,11 +3,12 @@ import "./App.css";
 import { Expense, ExpenseList } from "./components/expense/ExpenseList";
 import { ExpenseFilter } from "./components/expense/ExpenseFilter";
 import ModalDialog from "./components/expense/Modal";
+import { SuccessModal } from "./SuccessModal";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [expenses, setExpenses] = useState<Expense[]>([]);
-  const [showModal, setShowModal] = useState(false);
+  const [successModal, setSuccessModal] = useState(false);
 
   const visibleExpenses = selectedCategory
     ? expenses.filter((e: Expense) => e.category === selectedCategory)
@@ -23,13 +24,14 @@ function App() {
       </div>
       <div className="mb-5 d-flex gap-3">
         <ModalDialog
-          onClick={() => setShowModal(!showModal)}
-          handleSubmit={(expense: Expense) =>
-            setExpenses([...expenses, { ...expense, id: expenses.length + 1 }])
-          }
+          handleSubmit={(expense: Expense) => {
+            setExpenses([...expenses, { ...expense, id: expenses.length + 1 }]);
+            setSuccessModal(true);
+          }}
         />
+
         <h3>
-          {visibleExpenses.length} {noun} to track.
+          {visibleExpenses.length} {selectedCategory} {noun} to track.
         </h3>
       </div>
       <div className="mb-5">
@@ -46,6 +48,7 @@ function App() {
         expenses={visibleExpenses}
         onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
       />
+      {successModal && <SuccessModal />}
     </>
   );
 }
