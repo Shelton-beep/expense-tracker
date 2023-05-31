@@ -1,28 +1,26 @@
-import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { ExpenseForm } from "./ExpenseForm";
 
 interface Props {
   handleSubmit: (expense: any) => void;
+  onClick: () => void;
 }
 
-function ModalDialog({ handleSubmit }: Props) {
-  const [isShow, invokeModal] = useState(false);
-
+function ModalDialog({ handleSubmit, onClick }: Props) {
   return (
     <>
-      <Button variant="success" onClick={() => invokeModal(!isShow)}>
+      <Button variant="success" onClick={onClick}>
         Add Expense
       </Button>
-      <Modal show={isShow}>
-        <Modal.Header closeButton onClick={() => invokeModal(!isShow)}>
+      <Modal>
+        <Modal.Header closeButton onClick={onClick}>
           <Modal.Title>Add Expenses Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ExpenseForm onSubmit={handleSubmit} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={() => invokeModal(!isShow)}>
+          <Button variant="danger" onClick={onClick}>
             Close
           </Button>
         </Modal.Footer>

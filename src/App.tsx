@@ -7,6 +7,7 @@ import ModalDialog from "./components/expense/Modal";
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [showModal, setShowModal] = useState(false);
 
   const visibleExpenses = selectedCategory
     ? expenses.filter((e: Expense) => e.category === selectedCategory)
@@ -22,6 +23,7 @@ function App() {
       </div>
       <div className="mb-5 d-flex gap-3">
         <ModalDialog
+          onClick={() => setShowModal(!showModal)}
           handleSubmit={(expense: Expense) =>
             setExpenses([...expenses, { ...expense, id: expenses.length + 1 }])
           }
