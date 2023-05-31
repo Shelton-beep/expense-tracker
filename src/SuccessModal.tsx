@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import "./SuccessModal.css";
+import { Modal } from "react-bootstrap";
+import { CheckCircle } from "@mui/icons-material";
 
 export const SuccessModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -7,18 +9,14 @@ export const SuccessModal = () => {
     <>
       <Modal show={!showModal}>
         <Modal.Header closeButton onClick={() => setShowModal(!showModal)}>
-          <Modal.Title>Add Expenses Form</Modal.Title>
+          <Modal.Title className="heading">Add Expenses Form</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Successfully submitted form</Modal.Body>
+        <Modal.Body className="modalBody">
+          <CheckCircle className="check" />
+          <h1 className="text">Successfully submitted form</h1>
+        </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="danger"
-            onClick={() => {
-              setShowModal(!showModal);
-            }}
-          >
-            Close
-          </Button>
+          <small className="footer">Shelton Simbi Inc.</small>
         </Modal.Footer>
       </Modal>
     </>

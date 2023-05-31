@@ -1,0 +1,27 @@
+.heading{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.check{
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50%;
+    color: green;
+    border: 3px solid limegreen;
+    margin: 20px 35%;
+    font-size: 150px !important;
+}
+
+.text{
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.footer{
+    margin: auto;
+    text-align: center;
+}
