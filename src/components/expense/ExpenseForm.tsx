@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import categories from "../../categories";
 
-const schema = z.object({
+export const schema = z.object({
   description: z
     .string()
     .min(3, { message: "Description should be at least 3 characters." })
