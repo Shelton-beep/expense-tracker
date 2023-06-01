@@ -9,12 +9,11 @@
 ::-webkit-scrollbar{
     width: 5px;
     scroll-behavior: smooth;
-    visibility: hidden;
 }
 
 ::-webkit-scrollbar-track{
     background-color: rgb(179, 179, 179);
-    visibility: hidden;
+    
 }
 
 ::-webkit-scrollbar-thumb{
