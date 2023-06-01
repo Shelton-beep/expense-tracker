@@ -19,11 +19,11 @@ export const HomePage = () => {
   return (
     <>
       <TopBar />
-      <div className="homeContainer">
+      <div className="d-flex homeContainer">
         <SideBar />
-        <div className="centerContent">
-          <div className="m-5 d-flex justify-content-between">
-            <h3 className="px-5">
+        <div className="container-fluid centerContent">
+          <div className="m-3 d-flex justify-content-between">
+            <h3 className="fs-5 text-nowrap">
               {visibleExpenses.length} {selectedCategory} {noun} to track.
             </h3>
             <ModalDialog
