@@ -6,7 +6,7 @@ import CategoryIcon from "@mui/icons-material/Category";
 
 export const SideBar = () => {
   return (
-    <div className="position-sticky top-50 overflow-y-scroll sideBar">
+    <div className="sideBar">
       <div className="sideBarWrapper">
         <ul className="sideBarList">
           <li className="sideBarListItem">

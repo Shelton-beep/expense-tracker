@@ -1,0 +1,6 @@
+.amountContainer, .totalContainer{
+    box-shadow: 31px 32px 36px 23px rgba(1,1,1,0.5);
+    border-radius: 10px;
+    background-color: aliceblue;
+    color: red;
+}

@@ -5,6 +5,7 @@ import { ExpenseFilter } from "../../components/expense/ExpenseFilter";
 import ModalDialog from "../../components/expense/Modal";
 import { TopBar } from "../../components/Navs/TopBar";
 import { SideBar } from "../../components/Navs/SideBar";
+import { ExpensesTotal } from "../../components/expense/expenses-total/ExpensesTotal";
 
 export const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -16,35 +17,50 @@ export const HomePage = () => {
 
   const noun = visibleExpenses.length === 1 ? "expense" : "expenses";
 
+  const totalAmount = expenses
+    .reduce((acc, expense) => expense.amount + acc, 0)
+    .toFixed(2);
+
   return (
     <>
       <TopBar />
       <div className="d-flex homeContainer">
         <SideBar />
         <div className="container-fluid centerContent">
-          <div className="m-3 d-flex justify-content-between">
-            <h3 className="fs-5 text-nowrap">
-              {visibleExpenses.length} {selectedCategory} {noun} to track.
-            </h3>
-            <ModalDialog
-              handleSubmit={(expense: Expense) => {
-                setExpenses([
-                  ...expenses,
-                  { ...expense, id: expenses.length + 1 },
-                ]);
-              }}
+          <div className=" d-column justify-content-around">
+            <ExpensesTotal
+              amount={totalAmount}
+              figure={visibleExpenses.length}
+              selectedCategory={selectedCategory}
+              noun={noun}
             />
+            <div className="d-flex mb-3 justify-content-around">
+              <div className="d-flex text-center justify-content-center align-items-center expenseFilter">
+                <h6>FilterExpenses: </h6>
+                {expenses.length !== 0 && (
+                  <ExpenseFilter
+                    onSelectCategory={(category) =>
+                      setSelectedCategory(category)
+                    }
+                  />
+                )}
+              </div>
+              <div className="ms-3 modalDialog">
+                <ModalDialog
+                  handleSubmit={(expense: Expense) => {
+                    setExpenses([
+                      ...expenses,
+                      { ...expense, id: expenses.length + 1 },
+                    ]);
+                  }}
+                />
+              </div>
+            </div>
           </div>
           <div className="mb-5">
             <hr />
           </div>
-          <div className="mb-3">
-            {expenses.length !== 0 && (
-              <ExpenseFilter
-                onSelectCategory={(category) => setSelectedCategory(category)}
-              />
-            )}
-          </div>
+
           <ExpenseList
             expenses={visibleExpenses}
             onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}

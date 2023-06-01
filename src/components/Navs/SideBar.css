@@ -1,6 +1,9 @@
 .sideBar{
     flex: 1.5;
     height: calc(100vh - 50px);
+    position: sticky;
+    top: 50px;
+    overflow-y: scroll;
 }
 
 ::-webkit-scrollbar{
@@ -30,6 +33,11 @@
     cursor: pointer;
     align-items: center;
     justify-content: center;
+}
+
+.sideBarListItem:hover{
+    font-weight: 900;
+    color: green;
 }
 
 .sideBarIcon{
