@@ -17,7 +17,7 @@ export const HomePage = () => {
 
   const noun = visibleExpenses.length === 1 ? "expense" : "expenses";
 
-  const totalAmount = expenses
+  const totalAmount = visibleExpenses
     .reduce((acc, expense) => expense.amount + acc, 0)
     .toFixed(2);
 

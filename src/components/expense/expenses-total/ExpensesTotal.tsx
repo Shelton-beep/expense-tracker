@@ -16,7 +16,7 @@ export const ExpensesTotal = ({
   return (
     <div className="container d-flex p-5 justify-content-around expensesTotalContainer">
       <div className="p-3 text-center amountContainer">
-        <h1>Total Expenses:</h1>
+        <h1>Total Amount:</h1>
         <h3>${amount}</h3>
       </div>
       <div className="p-3 ms-4 text-center totalContainer">
