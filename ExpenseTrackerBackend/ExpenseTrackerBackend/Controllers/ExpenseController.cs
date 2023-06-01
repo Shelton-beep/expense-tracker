@@ -1,4 +1,5 @@
 ﻿
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography.X509Certificates;
@@ -9,24 +10,32 @@ namespace ExpenseTrackerBackend.Controllers
     [ApiController]
     public class ExpenseController : ControllerBase
     {
+        
+        private readonly IExpenseService _expenseService;
+
+        public ExpenseController(IExpenseService expenseService)
+        {
+            _expenseService = expenseService;
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<Expense>>> GetAllExpenses()
         {
-            return new List<Expense>
-            {
-                new Expense
-                {
-                    Description = "Spider Man",
-                    Amount = 300,
-                    Category = "Parker"
-                },
-                 new Expense
-                {
-                    Description = "Spider Man",
-                    Amount = 300,
-                    Category = "Parker"
-                }
-            };
+            return Ok(_expenseService.GetAllExpenses());
+            
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Expense>> GetSingleExpense(int id)
+        {
+            return Ok(_expenseService.GetExpenseById(id));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<List<Expense>>> AddExpense(Expense newExpense)
+        {
+            
+            return Ok(_expenseService.AddExpenses(newExpense));
         }
 
        
