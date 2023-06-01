@@ -23,7 +23,10 @@ function ModalDialog({ handleSubmit }: Props) {
           <Modal.Title>Add Expenses Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ExpenseForm onSubmit={handleSubmit} />
+          <ExpenseForm
+            onClick={() => setShowModal(!showModal)}
+            onSubmit={handleSubmit}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={() => setShowModal(!showModal)}>

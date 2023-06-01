@@ -21,9 +21,10 @@ type ExpenseFormData = z.infer<typeof schema>;
 
 interface Props {
   onSubmit: (data: ExpenseFormData) => void;
+  onClick: () => void;
 }
 
-export const ExpenseForm = ({ onSubmit }: Props) => {
+export const ExpenseForm = ({ onSubmit, onClick }: Props) => {
   const {
     register,
     reset,
@@ -84,7 +85,9 @@ export const ExpenseForm = ({ onSubmit }: Props) => {
           <p className="text-danger">{errors.category.message}</p>
         )}
       </div>
-      <button className="btn btn-primary">Submit</button>
+      <button className="btn btn-primary" onClick={onClick}>
+        Submit
+      </button>
     </form>
   );
 };

@@ -2,10 +2,11 @@ import "./SideBar.css";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import DashboardCustomizeRoundedIcon from "@mui/icons-material/DashboardCustomizeRounded";
 import AttachMoneyRoundedIcon from "@mui/icons-material/AttachMoneyRounded";
+import CategoryIcon from "@mui/icons-material/Category";
 
 export const SideBar = () => {
   return (
-    <div className="sideBar">
+    <div className="position-sticky top-50 overflow-y-scroll sideBar">
       <div className="sideBarWrapper">
         <ul className="sideBarList">
           <li className="sideBarListItem">
@@ -16,9 +17,9 @@ export const SideBar = () => {
           </li>
           <li className="sideBarListItem">
             <span className="sideBarIcon">
-              <DashboardCustomizeRoundedIcon />
+              <CategoryIcon />
             </span>
-            View Dashboards
+            Manage Categories
           </li>
           <li className="sideBarListItem">
             <span className="sideBarIcon">
@@ -26,9 +27,14 @@ export const SideBar = () => {
             </span>
             Manage Revenue
           </li>
-          <li className="sideBarListItem">item4</li>
-          <li className="sideBarListItem">item5</li>
-          <li className="sideBarListItem">item6</li>
+          <hr />
+          <h3 className="fw-lighter fs-5">DashBoards</h3>
+          <li className="sideBarListItem">
+            <span className="sideBarIcon">
+              <DashboardCustomizeRoundedIcon />
+            </span>
+            View DashBoards
+          </li>
         </ul>
       </div>
     </div>

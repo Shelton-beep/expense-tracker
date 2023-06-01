@@ -12,11 +12,7 @@ export const TopBar = () => {
               placeholder="Search"
               aria-label="Search"
             />
-            <button
-              className="btn btn-outline-success"
-              data-bs-theme="light"
-              type="submit"
-            >
+            <button className="btn btn-success" type="submit">
               Search
             </button>
           </form>
