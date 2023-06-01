@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "aQw32w9J4aUrF1lC2El11f9BkvEFgcQATLhzb45o5nU=",
+  "Source": "ExpenseTrackerBackend",
+  "BasePath": "_content/ExpenseTrackerBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
