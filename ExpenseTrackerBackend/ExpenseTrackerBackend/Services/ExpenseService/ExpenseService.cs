@@ -32,8 +32,8 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
         public async Task<ServiceResponse<List<GetExpenseDto>>> AddExpenses(AddExpenseDto newExpense)
         {
             var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
-            expenses.Add(_mapper.Map<Expense>(newExpense));
-            serviceResponse.Data = expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
+            var dbExpenses = await _context.Expenses.AddAsync(_mapper.Map<Expense>(newExpense));
+            serviceResponse.Data = _context.Expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
             return serviceResponse;
         }
 
@@ -50,8 +50,8 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
 
                 }
 
-                expenses.Remove(dbExpense);
-                serviceResponse.Data = expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
+                _context.Expenses.Remove(dbExpense);
+                serviceResponse.Data = _context.Expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
 
             }
             catch (Exception ex)
