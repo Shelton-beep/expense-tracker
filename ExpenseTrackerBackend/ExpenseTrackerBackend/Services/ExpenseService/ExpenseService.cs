@@ -49,5 +49,30 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
             serviceResponse.Data = _mapper.Map<GetExpenseDto>(expense);
             return serviceResponse;
         }
+
+        public async Task<ServiceResponse<GetExpenseDto>> UpdateExpense(UpdateExpenseDto updatedExpense)
+        {
+            var serviceResponse = new ServiceResponse<GetExpenseDto>();
+
+            try
+            {
+                var expense = expenses.FirstOrDefault(e => e.Id == updatedExpense.Id);
+                if(expense == null)
+                {
+                    throw new Exception($"Expense with Id '{updatedExpense.Id}' not found");
+                }
+                expense.Description = updatedExpense.Description;
+                expense.Amount = updatedExpense.Amount;
+                expense.Category = updatedExpense.Category;
+
+                serviceResponse.Data = _mapper.Map<GetExpenseDto>(expense);
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            return serviceResponse;
+        }
     }
 }

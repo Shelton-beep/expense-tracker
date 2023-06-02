@@ -38,6 +38,18 @@ namespace ExpenseTrackerBackend.Controllers
             return Ok(await _expenseService.AddExpenses(newExpense));
         }
 
-       
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<List<GetExpenseDto>>>> UpdateExpense(UpdateExpenseDto updatedExpense)
+        {
+            var response = await _expenseService.UpdateExpense(updatedExpense);
+            if(response.Data == null) 
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
+        }
+
+
     }
 }

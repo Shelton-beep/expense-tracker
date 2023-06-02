@@ -5,6 +5,7 @@
         public AutoMapperProfile()
         {
             CreateMap<Expense, GetExpenseDto>();
+            CreateMap<AddExpenseDto, Expense>();
         }
     }
 }
