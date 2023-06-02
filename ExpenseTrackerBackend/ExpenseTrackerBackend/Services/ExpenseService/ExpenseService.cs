@@ -33,7 +33,13 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
 
         public Expense GetExpenseById(int id)
         {
-            return expenses.FirstOrDefault(e => e.Id == id);
+            var expense = expenses.FirstOrDefault(e => e.Id == id);
+            if(expense is not null)
+            {
+                return expense;
+            }
+
+            throw new Exception("Expense not found");
         }
     }
 }
