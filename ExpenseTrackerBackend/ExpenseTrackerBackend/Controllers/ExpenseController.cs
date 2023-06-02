@@ -50,6 +50,18 @@ namespace ExpenseTrackerBackend.Controllers
             return Ok(response);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ServiceResponse<GetExpenseDto>>> DeleteExpense(int id)
+        {
+            var response = await _expenseService.DeleteExpense(id);
+            if (response.Data == null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
+        }
+
 
     }
 }

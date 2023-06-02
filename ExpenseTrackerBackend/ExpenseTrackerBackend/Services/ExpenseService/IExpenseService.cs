@@ -7,5 +7,6 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
         Task<ServiceResponse<GetExpenseDto>> GetExpenseById(int id);
         Task<ServiceResponse<List<GetExpenseDto>>> AddExpenses(AddExpenseDto newExpense);
         Task<ServiceResponse<GetExpenseDto>> UpdateExpense(UpdateExpenseDto updatedExpense);
+        Task<ServiceResponse<List<GetExpenseDto>>> DeleteExpense(int id);
     }
 }

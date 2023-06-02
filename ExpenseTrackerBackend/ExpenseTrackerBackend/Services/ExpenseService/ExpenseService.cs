@@ -35,6 +35,31 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
             return serviceResponse;
         }
 
+        public async Task<ServiceResponse<List<GetExpenseDto>>> DeleteExpense(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
+
+            try
+            {
+                var expense = expenses.FirstOrDefault(e => e.Id == id);
+                if (expense == null)
+                {
+                    throw new Exception($"Expense with Id '{id}' not found");
+
+                }
+
+                expenses.Remove(expense);
+                serviceResponse.Data = expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            return serviceResponse;
+        }
+
         public async Task<ServiceResponse<List<GetExpenseDto>>> GetAllExpenses()
         {
             var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
