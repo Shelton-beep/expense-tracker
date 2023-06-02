@@ -21,21 +21,21 @@ namespace ExpenseTrackerBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Expense>>> GetAllExpenses()
         {
-            return Ok(_expenseService.GetAllExpenses());
+            return Ok(await _expenseService.GetAllExpenses());
             
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Expense>> GetSingleExpense(int id)
         {
-            return Ok(_expenseService.GetExpenseById(id));
+            return Ok(await _expenseService.GetExpenseById(id));
         }
 
         [HttpPost]
         public async Task<ActionResult<List<Expense>>> AddExpense(Expense newExpense)
         {
             
-            return Ok(_expenseService.AddExpenses(newExpense));
+            return Ok(await _expenseService.AddExpenses(newExpense));
         }
 
        

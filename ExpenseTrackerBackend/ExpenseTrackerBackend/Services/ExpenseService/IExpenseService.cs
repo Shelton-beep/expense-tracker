@@ -2,8 +2,8 @@
 {
     public interface IExpenseService
     {
-        List<Expense> GetAllExpenses();
-        Expense GetExpenseById(int id);
-        List<Expense> AddExpenses(Expense newExpense);
+        Task<List<Expense>> GetAllExpenses();
+        Task<Expense> GetExpenseById(int id);
+        Task<List<Expense>> AddExpenses(Expense newExpense);
     }
 }

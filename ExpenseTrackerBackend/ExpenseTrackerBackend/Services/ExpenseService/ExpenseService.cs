@@ -20,18 +20,18 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
                     Category = "Parker"
                 }
         };
-        public List<Expense> AddExpenses(Expense newExpense)
+        public async Task<List<Expense>> AddExpenses(Expense newExpense)
         {
             expenses.Add(newExpense);
             return expenses;
         }
 
-        public List<Expense> GetAllExpenses()
+        public async Task<List<Expense>> GetAllExpenses()
         {
             return expenses;
         }
 
-        public Expense GetExpenseById(int id)
+        public async Task<Expense> GetExpenseById(int id)
         {
             var expense = expenses.FirstOrDefault(e => e.Id == id);
             if(expense is not null)
