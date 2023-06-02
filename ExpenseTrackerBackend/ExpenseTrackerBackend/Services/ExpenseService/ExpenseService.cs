@@ -22,10 +22,12 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
                 }
         };
         private readonly IMapper _mapper;
+        private readonly DataContext _context;
 
-        public ExpenseService(IMapper mapper)
+        public ExpenseService(IMapper mapper, DataContext context)
         {
             _mapper = mapper;
+            _context = context;
         }
         public async Task<ServiceResponse<List<GetExpenseDto>>> AddExpenses(AddExpenseDto newExpense)
         {
@@ -41,14 +43,14 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
 
             try
             {
-                var expense = expenses.FirstOrDefault(e => e.Id == id);
-                if (expense == null)
+                var dbExpense = await _context.Expenses.FirstOrDefaultAsync(e => e.Id == id);
+                if (dbExpense == null)
                 {
                     throw new Exception($"Expense with Id '{id}' not found");
 
                 }
 
-                expenses.Remove(expense);
+                expenses.Remove(dbExpense);
                 serviceResponse.Data = expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
 
             }
@@ -63,15 +65,16 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
         public async Task<ServiceResponse<List<GetExpenseDto>>> GetAllExpenses()
         {
             var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
-            serviceResponse.Data = expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
+            var dbExpenses = await _context.Expenses.ToListAsync();
+            serviceResponse.Data = dbExpenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
             return serviceResponse;
         }
 
         public async Task<ServiceResponse<GetExpenseDto>> GetExpenseById(int id)
         {
             var serviceResponse = new ServiceResponse<GetExpenseDto>();
-            var expense = expenses.FirstOrDefault(e => e.Id == id);
-            serviceResponse.Data = _mapper.Map<GetExpenseDto>(expense);
+            var dbExpense = await _context.Expenses.FirstOrDefaultAsync(e => e.Id == id);
+            serviceResponse.Data = _mapper.Map<GetExpenseDto>(dbExpense);
             return serviceResponse;
         }
 
@@ -81,16 +84,16 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
 
             try
             {
-                var expense = expenses.FirstOrDefault(e => e.Id == updatedExpense.Id);
-                if(expense == null)
+                var dbExpense = await _context.Expenses.FirstOrDefaultAsync(e => e.Id == updatedExpense.Id);
+                if(dbExpense == null)
                 {
                     throw new Exception($"Expense with Id '{updatedExpense.Id}' not found");
                 }
-                expense.Description = updatedExpense.Description;
-                expense.Amount = updatedExpense.Amount;
-                expense.Category = updatedExpense.Category;
+                dbExpense.Description = updatedExpense.Description;
+                dbExpense.Amount = updatedExpense.Amount;
+                dbExpense.Category = updatedExpense.Category;
 
-                serviceResponse.Data = _mapper.Map<GetExpenseDto>(expense);
+                serviceResponse.Data = _mapper.Map<GetExpenseDto>(dbExpense);
             }
             catch (Exception ex)
             {
