@@ -30,3 +30,5 @@ C:\Users\USER\OneDrive\Desktop\Projects\ReactProjects\expense-tracker\ExpenseTra
 C:\Users\USER\OneDrive\Desktop\Projects\ReactProjects\expense-tracker\ExpenseTrackerBackend\ExpenseTrackerBackend\obj\Debug\net6.0\ExpenseTrackerBackend.pdb
 C:\Users\USER\OneDrive\Desktop\Projects\ReactProjects\expense-tracker\ExpenseTrackerBackend\ExpenseTrackerBackend\obj\Debug\net6.0\ExpenseTrackerBackend.genruntimeconfig.cache
 C:\Users\USER\OneDrive\Desktop\Projects\ReactProjects\expense-tracker\ExpenseTrackerBackend\ExpenseTrackerBackend\obj\Debug\net6.0\ref\ExpenseTrackerBackend.dll
+C:\Users\USER\OneDrive\Desktop\Projects\ReactProjects\expense-tracker\ExpenseTrackerBackend\ExpenseTrackerBackend\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\USER\OneDrive\Desktop\Projects\ReactProjects\expense-tracker\ExpenseTrackerBackend\ExpenseTrackerBackend\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

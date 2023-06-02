@@ -1,4 +1,5 @@
-﻿using ExpenseTrackerBackend.Models;
+﻿
+using ExpenseTrackerBackend.Models;
 
 namespace ExpenseTrackerBackend.Services.ExpenseService
 {
@@ -20,26 +21,33 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
                     Category = "Parker"
                 }
         };
-        public async Task<List<Expense>> AddExpenses(Expense newExpense)
+        private readonly IMapper _mapper;
+
+        public ExpenseService(IMapper mapper)
         {
-            expenses.Add(newExpense);
-            return expenses;
+            _mapper = mapper;
+        }
+        public async Task<ServiceResponse<List<GetExpenseDto>>> AddExpenses(AddExpenseDto newExpense)
+        {
+            var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
+            expenses.Add(_mapper.Map<Expense>(newExpense));
+            serviceResponse.Data = expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
+            return serviceResponse;
         }
 
-        public async Task<List<Expense>> GetAllExpenses()
+        public async Task<ServiceResponse<List<GetExpenseDto>>> GetAllExpenses()
         {
-            return expenses;
+            var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
+            serviceResponse.Data = expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
+            return serviceResponse;
         }
 
-        public async Task<Expense> GetExpenseById(int id)
+        public async Task<ServiceResponse<GetExpenseDto>> GetExpenseById(int id)
         {
+            var serviceResponse = new ServiceResponse<GetExpenseDto>();
             var expense = expenses.FirstOrDefault(e => e.Id == id);
-            if(expense is not null)
-            {
-                return expense;
-            }
-
-            throw new Exception("Expense not found");
+            serviceResponse.Data = _mapper.Map<GetExpenseDto>(expense);
+            return serviceResponse;
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿namespace ExpenseTrackerBackend.Services.ExpenseService
+﻿
+namespace ExpenseTrackerBackend.Services.ExpenseService
 {
     public interface IExpenseService
     {
-        Task<List<Expense>> GetAllExpenses();
-        Task<Expense> GetExpenseById(int id);
-        Task<List<Expense>> AddExpenses(Expense newExpense);
+        Task<ServiceResponse<List<GetExpenseDto>>> GetAllExpenses();
+        Task<ServiceResponse<GetExpenseDto>> GetExpenseById(int id);
+        Task<ServiceResponse<List<GetExpenseDto>>> AddExpenses(AddExpenseDto newExpense);
     }
 }
