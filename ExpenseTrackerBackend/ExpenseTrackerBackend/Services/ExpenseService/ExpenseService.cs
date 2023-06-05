@@ -43,15 +43,22 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
         public async Task<ServiceResponse<List<GetExpenseDto>>> DeleteExpense(int id)
         {
             var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
-
-            var dbExpense = await _context.Expenses.FindAsync(id);
-            if (dbExpense == null)
+            try
             {
-                throw new Exception($"Expense with Id '{id}' not found");
+                var dbExpense = await _context.Expenses.FindAsync(id);
+                if (dbExpense == null)
+                {
+                    serviceResponse.Data = null;
+                }
+                _context.Expenses.Remove(dbExpense);
+
             }
-
-            _context.Expenses.Remove(dbExpense);
-
+            catch  
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = "Expense with Id '{id}' not found";
+            }
+            
             await _context.SaveChangesAsync();
             serviceResponse.Data = _context.Expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
             return serviceResponse;

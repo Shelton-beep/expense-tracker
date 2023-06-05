@@ -1,5 +1,6 @@
 ﻿
 
+using Azure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography.X509Certificates;
@@ -28,7 +29,13 @@ namespace ExpenseTrackerBackend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceResponse<GetExpenseDto>>> GetSingleExpense(int id)
         {
-            return Ok(await _expenseService.GetExpenseById(id)); 
+            var response = await _expenseService.GetExpenseById(id);
+            if (response.Data == null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
         }
 
         [HttpPost]
