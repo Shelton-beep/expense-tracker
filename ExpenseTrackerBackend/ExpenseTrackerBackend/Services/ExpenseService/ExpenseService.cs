@@ -1,5 +1,7 @@
 ﻿
 using ExpenseTrackerBackend.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace ExpenseTrackerBackend.Services.ExpenseService
 {
@@ -33,6 +35,7 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
         {
             var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
             var dbExpenses = await _context.Expenses.AddAsync(_mapper.Map<Expense>(newExpense));
+            await _context.SaveChangesAsync();
             serviceResponse.Data = _context.Expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
             return serviceResponse;
         }
@@ -41,24 +44,16 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
         {
             var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
 
-            try
+            var dbExpense = await _context.Expenses.FindAsync(id);
+            if (dbExpense == null)
             {
-                var dbExpense = await _context.Expenses.FirstOrDefaultAsync(e => e.Id == id);
-                if (dbExpense == null)
-                {
-                    throw new Exception($"Expense with Id '{id}' not found");
-
-                }
-
-                _context.Expenses.Remove(dbExpense);
-                serviceResponse.Data = _context.Expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
-
+                throw new Exception($"Expense with Id '{id}' not found");
             }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
+
+            _context.Expenses.Remove(dbExpense);
+
+            await _context.SaveChangesAsync();
+            serviceResponse.Data = _context.Expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
             return serviceResponse;
         }
 
@@ -93,6 +88,7 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
                 dbExpense.Amount = updatedExpense.Amount;
                 dbExpense.Category = updatedExpense.Category;
 
+                await _context.SaveChangesAsync();
                 serviceResponse.Data = _mapper.Map<GetExpenseDto>(dbExpense);
             }
             catch (Exception ex)
