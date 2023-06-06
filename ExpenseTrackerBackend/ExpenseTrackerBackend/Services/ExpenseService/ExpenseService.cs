@@ -36,7 +36,7 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
             var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
             var dbExpenses = await _context.Expenses.AddAsync(_mapper.Map<Expense>(newExpense));
             await _context.SaveChangesAsync();
-            serviceResponse.Data = _context.Expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
+            serviceResponse.Results = _context.Expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
             return serviceResponse;
         }
 
@@ -48,7 +48,7 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
                 var dbExpense = await _context.Expenses.FindAsync(id);
                 if (dbExpense == null)
                 {
-                    serviceResponse.Data = null;
+                    serviceResponse.Results = null;
                 }
                 _context.Expenses.Remove(dbExpense);
 
@@ -60,7 +60,7 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
             }
             
             await _context.SaveChangesAsync();
-            serviceResponse.Data = _context.Expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
+            serviceResponse.Results = _context.Expenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
             return serviceResponse;
         }
 
@@ -68,7 +68,7 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
         {
             var serviceResponse = new ServiceResponse<List<GetExpenseDto>>();
             var dbExpenses = await _context.Expenses.ToListAsync();
-            serviceResponse.Data = dbExpenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
+            serviceResponse.Results = dbExpenses.Select(e => _mapper.Map<GetExpenseDto>(e)).ToList();
             return serviceResponse;
         }
 
@@ -76,7 +76,7 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
         {
             var serviceResponse = new ServiceResponse<GetExpenseDto>();
             var dbExpense = await _context.Expenses.FirstOrDefaultAsync(e => e.Id == id);
-            serviceResponse.Data = _mapper.Map<GetExpenseDto>(dbExpense);
+            serviceResponse.Results = _mapper.Map<GetExpenseDto>(dbExpense);
             return serviceResponse;
         }
 
@@ -96,7 +96,7 @@ namespace ExpenseTrackerBackend.Services.ExpenseService
                 dbExpense.Category = updatedExpense.Category;
 
                 await _context.SaveChangesAsync();
-                serviceResponse.Data = _mapper.Map<GetExpenseDto>(dbExpense);
+                serviceResponse.Results = _mapper.Map<GetExpenseDto>(dbExpense);
             }
             catch (Exception ex)
             {

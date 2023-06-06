@@ -30,7 +30,7 @@ namespace ExpenseTrackerBackend.Controllers
         public async Task<ActionResult<ServiceResponse<GetExpenseDto>>> GetSingleExpense(int id)
         {
             var response = await _expenseService.GetExpenseById(id);
-            if (response.Data == null)
+            if (response.Results == null)
             {
                 return NotFound(response);
             }
@@ -49,7 +49,7 @@ namespace ExpenseTrackerBackend.Controllers
         public async Task<ActionResult<ServiceResponse<List<GetExpenseDto>>>> UpdateExpense(UpdateExpenseDto updatedExpense)
         {
             var response = await _expenseService.UpdateExpense(updatedExpense);
-            if(response.Data == null) 
+            if(response.Results == null) 
             {
                 return NotFound(response);
             }
@@ -61,7 +61,7 @@ namespace ExpenseTrackerBackend.Controllers
         public async Task<ActionResult<ServiceResponse<GetExpenseDto>>> DeleteExpense(int id)
         {
             var response = await _expenseService.DeleteExpense(id);
-            if (response.Data == null)
+            if (response.Results == null)
             {
                 return NotFound(response);
             }
