@@ -4,15 +4,13 @@ import axios, { CanceledError } from "axios";
 import { Expense, ExpenseList } from "../../components/expense/ExpenseList";
 import { ExpenseFilter } from "../../components/expense/ExpenseFilter";
 import ModalDialog from "../../components/expense/Modal";
-import { TopBar } from "../../components/Navs/TopBar";
-import { SideBar } from "../../components/Navs/SideBar";
 import { ExpensesTotal } from "../../components/expense/expenses-total/ExpensesTotal";
 
 interface fetchingExpenses {
   results: Expense[];
 }
 
-export const HomePage = () => {
+const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [error, setError] = useState("");
@@ -54,9 +52,7 @@ export const HomePage = () => {
   }
   return (
     <>
-      <TopBar />
       <div className="d-flex homeContainer">
-        <SideBar />
         <div className="container-fluid centerContent">
           <div className=" d-column justify-content-around">
             <ExpensesTotal
@@ -101,3 +97,5 @@ export const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;

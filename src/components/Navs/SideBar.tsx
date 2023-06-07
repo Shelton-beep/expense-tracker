@@ -3,6 +3,7 @@ import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import DashboardCustomizeRoundedIcon from "@mui/icons-material/DashboardCustomizeRounded";
 import AttachMoneyRoundedIcon from "@mui/icons-material/AttachMoneyRounded";
 import CategoryIcon from "@mui/icons-material/Category";
+import { NavLink } from "react-router-dom";
 
 export const SideBar = () => {
   return (
@@ -10,25 +11,31 @@ export const SideBar = () => {
       <div className="sideBarWrapper">
         <ul className="sideBarList">
           <li className="sideBarListItem">
-            <span className="sideBarIcon">
-              <ShoppingCartRoundedIcon />
-            </span>
-            Manage Expenses
+            <NavLink to="/">
+              <span className="sideBarIcon">
+                <ShoppingCartRoundedIcon />
+              </span>
+              Manage Expenses
+            </NavLink>
           </li>
           <li className="sideBarListItem">
-            <span className="sideBarIcon">
-              <CategoryIcon />
-            </span>
-            Manage Categories
+            <NavLink to="/categories">
+              <span className="sideBarIcon">
+                <CategoryIcon />
+              </span>
+              Manage Categories
+            </NavLink>
           </li>
           <li className="sideBarListItem">
-            <span className="sideBarIcon">
-              <AttachMoneyRoundedIcon />
-            </span>
-            Manage Revenue
+            <NavLink to="/revenue">
+              <span className="sideBarIcon">
+                <AttachMoneyRoundedIcon />
+              </span>
+              Manage Revenue
+            </NavLink>
           </li>
           <hr />
-          <h3 className="fw-lighter fs-5">DashBoards</h3>
+          <h3 className="fw-lighter fs-5 headingText">DashBoards</h3>
           <li className="sideBarListItem">
             <span className="sideBarIcon">
               <DashboardCustomizeRoundedIcon />

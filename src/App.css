@@ -14,3 +14,20 @@ h3{
     margin: 10px 5px;
     flex: 7;
 }
+
+.appContainer{
+    display: flex;
+}
+
+.sideBarContainer{
+    flex: 1.5;
+    height: calc(100vh - 56px);
+    position: sticky;
+    top: 56px;
+    overflow-y: scroll;
+}
+
+.contentContainer{
+    flex: 7;
+    margin: 10px;
+}

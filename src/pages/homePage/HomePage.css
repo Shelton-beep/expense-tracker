@@ -2,11 +2,6 @@
     width: 100%;
 }
 
-.centerContent{
-    flex: 7;
-    margin: 10px;
-}
-
 .loader{  
     background-color: aqua;  
     height: 30px;
