@@ -91,7 +91,7 @@ export const HomePage = () => {
           <div className="mb-5">
             <hr />
           </div>
-          {isLoading && <div className="spinner-border"></div>}
+          {isLoading && <div className="spinner-border loader"></div>}
           <ExpenseList
             expenses={visibleExpenses}
             onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}

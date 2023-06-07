@@ -6,6 +6,9 @@
         {
             CreateMap<Expense, GetExpenseDto>();
             CreateMap<AddExpenseDto, Expense>();
+
+            CreateMap<Category, GetCategoryDto>();
+            CreateMap<AddCategoryDto, Category>();
         }
     }
 }

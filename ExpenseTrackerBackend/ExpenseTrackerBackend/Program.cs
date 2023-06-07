@@ -4,6 +4,8 @@ global using ExpenseTrackerBackend.Dtos.Expense;
 global using AutoMapper;
 global using Microsoft.EntityFrameworkCore;
 global using ExpenseTrackerBackend.Data;
+global using ExpenseTrackerBackend.Services.CategoryService;
+global using ExpenseTrackerBackend.Dtos.Category;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,7 @@ builder.Services.AddCors(options =>
     });
 });
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 

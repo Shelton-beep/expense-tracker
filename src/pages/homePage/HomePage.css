@@ -6,3 +6,12 @@
     flex: 7;
     margin: 10px;
 }
+
+.loader{  
+    background-color: aqua;  
+    height: 30px;
+    width: 30px;
+    color: red;
+    text-align: center;
+    margin: auto;
+}
