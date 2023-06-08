@@ -64,6 +64,7 @@ const HomePage = () => {
             <div className="d-flex mb-3 justify-content-around">
               <div className="d-flex text-center justify-content-center align-items-center expenseFilter">
                 <h6>FilterExpenses: </h6>
+                {isLoading && <div className="spinner-border loader"></div>}
                 {expenses.length !== 0 && (
                   <ExpenseFilter
                     onSelectCategory={(category) =>
