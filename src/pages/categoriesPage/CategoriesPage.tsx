@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios, { CanceledError } from "axios";
 import { CategoriesList } from "../../components/category/CategoriesList";
 import { CategoryCard } from "../../components/category/CategoryCard";
+import { CategoryForm } from "../../components/category/CategoryForm";
 
 export interface Category {
   id: number;
@@ -41,14 +42,17 @@ const CategoriesPage = () => {
 
   return (
     <>
-      {error && <h1>{error}</h1>}
       {isLoading && <div className="spinner-border loader"></div>}
+      {error && <h1>{error}</h1>}
+      <CategoryForm onSubmit={() => console.log("submitted")} />
+
       <CategoryCard
         handleClick={() => setShowCategories(!showCategories)}
         count={categories.length}
         buttonName={showCategories ? "Hide Categories" : "Show Categories"}
         buttonColor={showCategories ? "danger" : "success"}
       />
+
       {showCategories && (
         <CategoriesList
           onDelete={(id) => setCategory(categories.filter((c) => c.id !== id))}
