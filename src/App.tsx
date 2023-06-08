@@ -20,7 +20,7 @@ function App() {
           <SideBar />
         </div>
         <div className="contentContainer">
-          <Suspense fallback={<div className="container">Loading...</div>}>
+          <Suspense fallback={<div className="spinner-border container"></div>}>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/categories" element={<CategoriesPage />} />
