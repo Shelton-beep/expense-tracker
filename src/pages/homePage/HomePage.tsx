@@ -39,6 +39,7 @@ const HomePage = () => {
     return () => controller.abort();
   }, []);
 
+  //Http request for DELETING expenses
   const deleteExpense = (expense: Expense) => {
     const originalExpenses = [...expenses];
     setExpenses(expenses.filter((e) => e.id !== expense.id));
@@ -51,6 +52,7 @@ const HomePage = () => {
       });
   };
 
+  //Http request for Fetching expenses
   const fetchData = () => {
     const controller = new AbortController();
     axios
@@ -69,12 +71,28 @@ const HomePage = () => {
     return () => controller.abort();
   };
 
+  //Http request for ADDING/POSTING expenses
   const addExpense = (data: ExpenseFormData) => {
     axios.post("https://localhost:7058/api/Expense/", data).then((res) => {
       const newExpenses = res.data.results;
       setExpenses((expenses) => [...expenses, newExpenses]);
       fetchData();
     });
+  };
+
+  const updateExpense = (expense: Expense) => {
+    const originalExpenses = [...expenses];
+    const updatedExpense = { ...expense, expense };
+    setExpenses(
+      expenses.map((e) => (e.id === expense.id ? updatedExpense : e))
+    );
+
+    axios
+      .put("https://localhost:7058/api/Expense/" + expense.id, updateExpense)
+      .catch((err) => {
+        setError(err.message);
+        setExpenses(originalExpenses);
+      });
   };
 
   const visibleExpenses = selectedCategory
@@ -125,6 +143,7 @@ const HomePage = () => {
           <ExpenseList
             expenses={visibleExpenses}
             onDelete={(expense) => deleteExpense(expense)}
+            onUpdate={(expense) => updateExpense(expense)}
           />
         </div>
       </div>

@@ -1,5 +1,5 @@
 export interface Expense {
-  id?: number;
+  id: number;
   description: string;
   amount: number;
   category: string;
@@ -8,9 +8,10 @@ export interface Expense {
 interface Props {
   expenses: Expense[];
   onDelete: (expense: Expense) => void;
+  onUpdate: (expense: Expense) => void;
 }
 
-export const ExpenseList = ({ expenses, onDelete }: Props) => {
+export const ExpenseList = ({ expenses, onDelete, onUpdate }: Props) => {
   if (expenses.length === 0)
     return (
       <h2>There are no expenses to show. Begin adding expenses to track...</h2>
@@ -33,6 +34,12 @@ export const ExpenseList = ({ expenses, onDelete }: Props) => {
               <td>{expense.amount}</td>
               <td>{expense.category}</td>
               <td>
+                <button
+                  className="btn btn-outline-secondary mx-3"
+                  onClick={() => onUpdate(expense)}
+                >
+                  Update
+                </button>
                 <button
                   className="btn btn-outline-danger"
                   onClick={() => onDelete(expense)}
