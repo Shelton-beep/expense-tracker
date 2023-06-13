@@ -1,5 +1,5 @@
 export interface Expense {
-  id: number;
+  id?: number;
   description: string;
   amount: number;
   category: string;
@@ -7,7 +7,7 @@ export interface Expense {
 
 interface Props {
   expenses: Expense[];
-  onDelete: (id: number) => void;
+  onDelete: (expense: Expense) => void;
 }
 
 export const ExpenseList = ({ expenses, onDelete }: Props) => {
@@ -35,7 +35,7 @@ export const ExpenseList = ({ expenses, onDelete }: Props) => {
               <td>
                 <button
                   className="btn btn-outline-danger"
-                  onClick={() => onDelete(expense.id)}
+                  onClick={() => onDelete(expense)}
                 >
                   Delete
                 </button>

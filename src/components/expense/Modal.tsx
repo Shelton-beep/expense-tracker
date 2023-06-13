@@ -1,9 +1,9 @@
 import { Modal, Button } from "react-bootstrap";
-import { ExpenseForm } from "./ExpenseForm";
+import { ExpenseForm, ExpenseFormData } from "./ExpenseForm";
 import { useState } from "react";
 
 interface Props {
-  handleSubmit: (expense: any) => void;
+  handleSubmit: (expense: ExpenseFormData) => void;
 }
 
 function ModalDialog({ handleSubmit }: Props) {
@@ -23,10 +23,7 @@ function ModalDialog({ handleSubmit }: Props) {
           <Modal.Title>Add Expenses Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ExpenseForm
-            onClick={() => setShowModal(!showModal)}
-            onSubmit={handleSubmit}
-          />
+          <ExpenseForm onSubmit={(data) => handleSubmit(data)} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={() => setShowModal(!showModal)}>
